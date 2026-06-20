@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadership Team — SSSf Group | Our Management</title>
+    <meta name="description" content="Meet the leadership team behind SSSf Group — visionary leaders with decades of combined expertise in construction and business development.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ── Premium Redesigned Leadership Styles ── */
+        #team {
+            padding: var(--section-py) 0;
+            background: var(--off-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .team-section-header .section-label { justify-content: center; }
+        .team-section-header .section-title { margin-bottom: 16px; }
+        .team-section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* 4-Column Grid Layout */
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            margin-bottom: 20px;
+        }
+
+        /* Leader Card Design */
+        .leader-card {
+            background: var(--white);
+            border: 1px solid var(--mid-gray);
+            border-radius: var(--r-md);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-xs);
+            transition: transform var(--t-med), box-shadow var(--t-med), border-color var(--t-med);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--gold-border);
+        }
+
+        /* Image Wrapper (Aspect 4:5 for Premium Tall Portrait) */
+        .lc-image-wrap {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            overflow: hidden;
+            position: relative;
+            background: var(--charcoal-dark);
+        }
+
+        .lc-image-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            filter: grayscale(15%) brightness(95%);
+            transition: transform var(--t-slow), filter var(--t-slow);
+        }
+
+        .leader-card:hover .lc-image-wrap img {
+            transform: scale(1.06);
+            filter: grayscale(0%) brightness(100%);
+        }
+
+        /* Elegant Floating Number Badge */
+        .lc-num-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--charcoal-dark);
+            color: var(--gold-light);
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold-border);
+            z-index: 5;
+            box-shadow: var(--shadow-xs);
+        }
+
+        /* Image Hover Overlay with circular Call-To-Action */
+        .lc-hover-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(20, 20, 20, 0.85) 0%, rgba(20, 20, 20, 0.2) 60%, transparent 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity var(--t-med);
+            z-index: 4;
+        }
+
+        .leader-card:hover .lc-hover-overlay {
+            opacity: 1;
+        }
+
+        .lc-overlay-cta {
+            background: var(--gradient-gold);
+            color: var(--charcoal-dark);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(230, 168, 0, 0.4);
+            transform: scale(0.8);
+            transition: transform var(--t-med) var(--spring);
+        }
+
+        .leader-card:hover .lc-overlay-cta {
+            transform: scale(1);
+        }
+
+        /* Leader Details */
+        .lc-details {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .lc-role {
+            font-size: 0.7rem;
+            color: var(--gold-dark);
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .lc-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.25;
+            transition: color var(--t-fast);
+        }
+
+        .leader-card:hover .lc-name {
+            color: var(--gold-dark);
+        }
+
+        .lc-short-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .lc-action-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--light-gray);
+            padding-top: 16px;
+            margin-top: auto;
+        }
+
+        .lc-socials {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lc-social-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 1px solid var(--mid-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all var(--t-fast);
+        }
+
+        .lc-social-icon:hover {
+            color: var(--gold-dark);
+            border-color: var(--gold-dark);
+            background: var(--gold-muted);
+        }
+
+        .lc-btn-more {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color var(--t-fast);
+        }
+
+        .lc-btn-more svg {
+            transition: transform var(--t-fast);
+        }
+
+        .leader-card:hover .lc-btn-more {
+            color: var(--gold-dark);
+        }
+
+        .leader-card:hover .lc-btn-more svg {
+            transform: translateX(4px);
+        }
+
+        /* ── Glassmorphic Profile Modals ── */
+        .leader-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s var(--ease), visibility 0.4s var(--ease);
+        }
+
+        .leader-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lm-content {
+            background: var(--white);
+            width: 100%;
+            max-width: 840px;
+            max-height: 90vh;
+            border-radius: var(--r-lg);
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1fr 1.35fr;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            transform: scale(0.9) translateY(30px);
+            transition: transform 0.45s var(--spring);
+        }
+
+        .leader-modal.active .lm-content {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Left Side (Image Banner) */
+        .lm-left {
+            position: relative;
+            background: var(--charcoal-dark);
+            height: 100%;
+            min-height: 480px;
+            overflow: hidden;
+        }
+
+        .lm-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .lm-left::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(20, 20, 20, 0.85) 0%, rgba(20, 20, 20, 0.1) 50%, transparent 100%);
+            z-index: 1;
+        }
+
+        .lm-left-badge {
+            position: absolute;
+            bottom: 32px;
+            left: 32px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .lm-left-badge .lm-num {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2.8rem;
+            line-height: 1;
+            color: var(--gold-light);
+            opacity: 0.9;
+        }
+
+        .lm-left-badge .lm-tag {
+            background: var(--gold-light);
+            color: var(--charcoal-dark);
+            font-size: 0.65rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: var(--r-full);
+            box-shadow: var(--shadow-xs);
+        }
+
+        /* Right Side (Content Panel) */
+        .lm-right {
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            position: relative;
+            max-height: 90vh;
+        }
+
+        /* Close Button */
+        .lm-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--off-white);
+            border: 1px solid var(--mid-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all var(--t-fast);
+            z-index: 10;
+        }
+
+        .lm-close:hover {
+            background: var(--charcoal-dark);
+            color: var(--white);
+            border-color: var(--charcoal-dark);
+            transform: rotate(90deg);
+        }
+
+        .lm-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .lm-title {
+            font-size: 0.8rem;
+            color: var(--gold-dark);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .lm-quote {
+            position: relative;
+            padding-left: 20px;
+            border-left: 3px solid var(--gold);
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--charcoal-100);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .lm-bio {
+            font-size: 0.88rem;
+            color: var(--text-body);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        /* Stats Grid inside Modal */
+        .lm-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .lm-stat-card {
+            background: var(--off-white);
+            border: 1px solid var(--mid-gray);
+            border-radius: var(--r-md);
+            padding: 14px 10px;
+            text-align: center;
+            transition: border-color var(--t-fast);
+        }
+
+        .lm-stat-card:hover {
+            border-color: var(--gold-border);
+        }
+
+        .lm-stat-card strong {
+            display: block;
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--charcoal-dark);
+            margin-bottom: 2px;
+            line-height: 1.1;
+        }
+
+        .lm-stat-card span {
+            display: block;
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Modal Footer Actions */
+        .lm-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+            border-top: 1px solid var(--light-gray);
+            padding-top: 24px;
+        }
+
+        .lm-btn-contact {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: var(--charcoal-dark);
+            color: var(--white);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            border-radius: var(--r-full);
+            transition: all var(--t-fast);
+        }
+
+        .lm-btn-contact:hover {
+            background: var(--gold-dark);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .lm-social-tray {
+            display: flex;
+            gap: 10px;
+        }
+
+        .lm-soc-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid var(--mid-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all var(--t-fast);
+        }
+
+        .lm-soc-icon:hover {
+            color: var(--gold-dark);
+            border-color: var(--gold-dark);
+            background: var(--gold-muted);
+            transform: scale(1.05);
+        }
+
+        /* ── Responsive Queries ── */
+        @media (max-width: 1100px) {
+            .leaders-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .lm-content {
+                grid-template-columns: 1fr;
+                max-height: 94vh;
+            }
+            .lm-left {
+                height: 200px;
+                min-height: 200px;
+            }
+            .lm-left-badge {
+                bottom: 16px;
+                left: 20px;
+            }
+            .lm-right {
+                padding: 32px 24px;
+                max-height: calc(94vh - 200px);
+            }
+            .lm-close {
+                top: 16px;
+                right: 16px;
+                background: var(--white);
+                box-shadow: var(--shadow-sm);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .leaders-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .lc-image-wrap {
+                aspect-ratio: 16 / 13;
+            }
+            .lm-stats {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            .lm-stat-card {
+                padding: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                text-align: left;
+            }
+            .lm-stat-card strong {
+                font-size: 1.3rem;
+                margin-bottom: 0;
+            }
+            .lm-footer {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+                text-align: center;
+            }
+            .lm-btn-contact {
+                justify-content: center;
+            }
+            .lm-social-tray {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="preloader"><div class="loader-ring"><div class="loader-ring-inner"></div></div><span class="loader-text">SSSf <span>Group</span></span></div>
+
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo"><div class="logo-emblem">S</div><div class="logo-divider"></div><span class="logo-name">SSSf <em>Group</em></span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="services.html" class="nav-link">Services</a></li>
+                <li><a href="projects.html" class="nav-link">Projects</a></li>
+                <li><a href="materials.html" class="nav-link">Materials</a></li>
+                <li><a href="leadership.html" class="nav-link">Leadership</a></li>
+                <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <a href="contact.html" class="nav-cta">Get a Quote</a>
+                <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-hero">
+        <div class="page-hero-lines"><div class="hero-line"></div><div class="hero-line"></div><div class="hero-line"></div><div class="hero-line"></div></div>
+        <div class="page-hero-gold-orb"></div>
+        <div class="page-hero-grid"></div>
+        <div class="page-hero-inner">
+            <div class="breadcrumb" data-animate="fade-up"><a href="index.html">Home</a><span>›</span><span style="color:var(--gold-light)">Leadership</span></div>
+            <div class="hero-badge" data-animate="fade-up" data-delay="100"><span class="badge-dot"></span>Driven by Vision · Built on Trust</div>
+            <h1 data-animate="fade-up" data-delay="200">The Minds Behind<br><span class="line-gold">SSSf Group</span></h1>
+            <p data-animate="fade-up" data-delay="300">Our leadership team brings decades of combined expertise, relentless dedication, and an unwavering commitment to excellence.</p>
+        </div>
+    </section>
+
+    <section id="team">
+        <div class="container">
+            <div class="team-section-header" data-animate="fade-up">
+                <span class="section-label">Our Leadership</span>
+                <h2 class="section-title">Meet the <span class="text-gold">Visionaries</span> Who Lead</h2>
+                <p>A core team of dedicated professionals guiding SSSf Group with architectural precision, operational safety, and strong business integrity.</p>
+            </div>
+
+            <div class="leaders-grid">
+
+                <!-- 01 CEO Card -->
+                <div class="leader-card" data-open-modal="modal-ceo" data-animate="fade-up" data-delay="100">
+                    <div class="lc-image-wrap">
+                        <div class="lc-num-badge">01</div>
+                        <img src="images/ceo.jpg" alt="Mr. Sahil Raza">
+                        <div class="lc-hover-overlay">
+                            <div class="lc-overlay-cta">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lc-details">
+                        <span class="lc-role">Founder &amp; CEO</span>
+                        <h3 class="lc-name">Mr. Sahil Raza</h3>
+                        <p class="lc-short-desc">Visionary entrepreneur setting the strategic direction, standards of construction excellence, and growth path.</p>
+                        <div class="lc-action-row">
+                            <div class="lc-socials">
+                                <span class="lc-social-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></span>
+                            </div>
+                            <span class="lc-btn-more">Profile <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 Operations Manager Card -->
+                <div class="leader-card" data-open-modal="modal-operations" data-animate="fade-up" data-delay="200">
+                    <div class="lc-image-wrap">
+                        <div class="lc-num-badge">02</div>
+                        <img src="images/manager.jpg" alt="Mr. Shahzad Raza">
+                        <div class="lc-hover-overlay">
+                            <div class="lc-overlay-cta">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lc-details">
+                        <span class="lc-role">Operations Manager</span>
+                        <h3 class="lc-name">Mr. Shahzad Raza</h3>
+                        <p class="lc-short-desc">Directs site execution, resource logistics, workforce efficiency, and safety protocols across all build sites.</p>
+                        <div class="lc-action-row">
+                            <div class="lc-socials">
+                                <span class="lc-social-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></span>
+                            </div>
+                            <span class="lc-btn-more">Profile <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03 Head of Projects Card -->
+                <div class="leader-card" data-open-modal="modal-projects" data-animate="fade-up" data-delay="300">
+                    <div class="lc-image-wrap">
+                        <div class="lc-num-badge">03</div>
+                        <img src="images/ceo1.jpg" alt="Ms. Zaineb Khan">
+                        <div class="lc-hover-overlay">
+                            <div class="lc-overlay-cta">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lc-details">
+                        <span class="lc-role">Head of Projects</span>
+                        <h3 class="lc-name">Ms. Zaineb Khan</h3>
+                        <p class="lc-short-desc">Manages engineering design, architectural accuracy, and blueprint compliance for premium quality builds.</p>
+                        <div class="lc-action-row">
+                            <div class="lc-socials">
+                                <span class="lc-social-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></span>
+                            </div>
+                            <span class="lc-btn-more">Profile <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 04 Business Head Card -->
+                <div class="leader-card" data-open-modal="modal-business" data-animate="fade-up" data-delay="400">
+                    <div class="lc-image-wrap">
+                        <div class="lc-num-badge">04</div>
+                        <img src="images/manager2.jpg" alt="Mr. Bilal Shah">
+                        <div class="lc-hover-overlay">
+                            <div class="lc-overlay-cta">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lc-details">
+                        <span class="lc-role">Business Head</span>
+                        <h3 class="lc-name">Mr. Bilal Shah</h3>
+                        <p class="lc-short-desc">Steers corporate alliances, material supply contracts, customer relations, and business expansion strategies.</p>
+                        <div class="lc-action-row">
+                            <div class="lc-socials">
+                                <span class="lc-social-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></span>
+                            </div>
+                            <span class="lc-btn-more">Profile <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── MODAL 01: Mr. Sahil Raza ── -->
+    <div class="leader-modal" id="modal-ceo">
+        <div class="lm-content">
+            <button class="lm-close" data-close-modal aria-label="Close modal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+            <div class="lm-left">
+                <img src="images/ceo.jpg" alt="Mr. Sahil Raza Portrait">
+                <div class="lm-left-badge">
+                    <span class="lm-num">01</span>
+                    <span class="lm-tag">CEO</span>
+                </div>
+            </div>
+            <div class="lm-right">
+                <h3 class="lm-name">Mr. Sahil Raza</h3>
+                <span class="lm-title">Founder &amp; CEO · SSSf Group</span>
+                <p class="lm-quote">"We don't just build structures — we build legacies. Quality is our identity."</p>
+                <p class="lm-bio">Sahil Raza founded SSSf Group in 2010 with a vision to revolutionize the infrastructure and building materials landscape. With over 15 years of industry experience, he has guided the company through hundreds of landmark residential and commercial projects, establishing SSSf Group as a synonym for quality, reliability, and precision.</p>
+                
+                <div class="lm-stats">
+                    <div class="lm-stat-card">
+                        <strong>500+</strong>
+                        <span>Projects Done</span>
+                    </div>
+                    <div class="lm-stat-card">
+                        <strong>15+</strong>
+                        <span>Years Exp</span>
+                    </div>
+                    <div class="lm-stat-card">
+                        <strong>200+</strong>
+                        <span>Happy Clients</span>
+                    </div>
+                </div>
+
+                <div class="lm-footer">
+                    <a href="mailto:info@sssfgroup.com" class="lm-btn-contact">Contact CEO <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="lm-social-tray">
+                        <a href="#" class="lm-soc-icon" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── MODAL 02: Mr. Shahzad Raza ── -->
+    <div class="leader-modal" id="modal-operations">
+        <div class="lm-content">
+            <button class="lm-close" data-close-modal aria-label="Close modal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+            <div class="lm-left">
+                <img src="images/manager.jpg" alt="Mr. Shahzad Raza Portrait">
+                <div class="lm-left-badge">
+                    <span class="lm-num">02</span>
+                    <span class="lm-tag">Operations</span>
+                </div>
+            </div>
+            <div class="lm-right">
+                <h3 class="lm-name">Mr. Shahzad Raza</h3>
+                <span class="lm-title">Operations Manager · SSSf Group</span>
+                <p class="lm-quote">"Excellence in execution is the result of relentless planning and team accountability."</p>
+                <p class="lm-bio">Shahzad Raza manages the on-site execution, engineering logistics, and field operations of SSSf Group. He ensures that every project conforms to strict quality assurance protocols, stays on schedule, and meets budgetary guidelines through hands-on supervision and team collaboration.</p>
+                
+                <div class="lm-stats">
+                    <div class="lm-stat-card">
+                        <strong>300+</strong>
+                        <span>Projects Run</span>
+                    </div>
+                    <div class="lm-stat-card">
+                        <strong>10+</strong>
+                        <span>Years Exp</span>
+                    </div>
+                    <div class="lm-stat-card">
+                        <strong>75+</strong>
+                        <span>Team Size</span>
+                    </div>
+                </div>
+
+                <div class="lm-footer">
+                    <a href="mailto:info@sssfgroup.com" class="lm-btn-contact">Contact Operations <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="lm-social-tray">
+                        <a href="#" class="lm-soc-icon" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── MODAL 03: Ms. Zaineb Khan ── -->
+    <div class="leader-modal" id="modal-projects">
+        <div class="lm-content">
+            <button class="lm-close" data-close-modal aria-label="Close modal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+            <div class="lm-left">
+                <img src="images/ceo1.jpg" alt="Ms. Zaineb Khan Portrait">
+                <div class="lm-left-badge">
+                    <span class="lm-num">03</span>
+                    <span class="lm-tag">Engineering</span>
+                </div>
+            </div>
+            <div class="lm-right">
+                <h3 class="lm-name">Ms. Zaineb Khan</h3>
+                <span class="lm-title">Head of Projects · SSSf Group</span>
+                <p class="lm-quote">"Every plan is only as strong as its delivery — I ensure precision from board to site."</p>
+                <p class="lm-bio">Zaineb Khan directs project planning, architectural design coordination, and structural integrity audits at SSSf Group. Her technical leadership and keen eye for detail have been pivotal in completing complex high-rise and commercial developments across major cities.</p>
+                
+                <div class="lm-stats">
+                    <div class="lm-stat-card">
+                        <strong>120+</strong>
+                        <span>Projects Led</span>
+                    </div>
+                    <div class="lm-stat-card">
+                        <strong>12+</strong>
+                        <span>Years Exp</span>
+                    </div>
+                    <div class="lm-stat-card">
+                        <strong>8+</strong>
+                        <span>Awards Won</span>
+                    </div>
+                </div>
+
+                <div class="lm-footer">
+                    <a href="mailto:info@sssfgroup.com" class="lm-btn-contact">Contact Projects <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="lm-social-tray">
+                        <a href="#" class="lm-soc-icon" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── MODAL 04: Mr. Bilal Shah ── -->
+    <div class="leader-modal" id="modal-business">
+        <div class="lm-content">
+            <button class="lm-close" data-close-modal aria-label="Close modal"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+            <div class="lm-left">
+                <img src="images/manager2.jpg" alt="Mr. Bilal Shah Portrait">
+                <div class="lm-left-badge">
+                    <span class="lm-num">04</span>
+                    <span class="lm-tag">Business</span>
+                </div>
+            </div>
+            <div class="lm-right">
+                <h3 class="lm-name">Mr. Bilal Shah</h3>
+                <span class="lm-title">Business Head · SSSf Group</span>
+                <p class="lm-quote">"Strong partnerships and clear communication turn every plan into a trusted delivery."</p>
+                <p class="lm-bio">Bilal Shah leads the corporate development, material procurement partnerships, and client relation strategies at SSSf Group. He specializes in driving business growth and ensuring seamless cooperation with institutional clients and supply-chain partners.</p>
+                
+                <div class="lm-stats">
+                    <div class="lm-stat-card">
+                        <strong>180+</strong>
+                        <span>Clients Managed</span>
+                    </div>
+                    <div class="lm-stat-card">
+                        <strong>11+</strong>
+                        <span>Years Exp</span>
+                    </div>
+                    <div class="lm-stat-card">
+                        <strong>95%</strong>
+                        <span>Retention Rate</span>
+                    </div>
+                </div>
+
+                <div class="lm-footer">
+                    <a href="mailto:info@sssfgroup.com" class="lm-btn-contact">Contact Business <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <div class="lm-social-tray">
+                        <a href="#" class="lm-soc-icon" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="cta-banner">
+        <div class="container">
+            <h2>Work With Our <span class="text-gold">Expert Team</span></h2>
+            <p>Connect with our leadership to discuss your construction project or business partnership.</p>
+            <div class="cta-banner-actions">
+                <a href="contact.html" class="btn btn-gold">Get in Touch <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <a href="about.html" class="btn btn-outline-white">About SSSf Group</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand"><a href="index.html" class="nav-logo"><div class="logo-emblem">S</div><div class="logo-divider" style="background:rgba(255,255,255,0.15)"></div><span class="logo-name">SSSf <em>Group</em></span></a><p>Your trusted partner in construction and premium building materials since 2010.</p></div>
+                <div class="footer-col"><h5>Quick Links</h5><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Projects</a></li><li><a href="leadership.html">Leadership</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+                <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html">Residential Construction</a></li><li><a href="services.html">Commercial Projects</a></li><li><a href="materials.html">Building Materials</a></li><li><a href="services.html">Infrastructure &amp; Roads</a></li><li><a href="services.html">Renovation</a></li></ul></div>
+                <div class="footer-col"><h5>Contact Info</h5><ul class="footer-contact-list"><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Industrial Area, Main Hwy</li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>info@sssfgroup.com</li><li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3"/></svg>+123 456 7890</li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 SSSf Group. All Rights Reserved.</p><div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div></div>
+        </div>
+    </footer>
+    <button id="backToTop" class="back-to-top" aria-label="Back to top"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg></button>
+    <script src="script.js"></script>
+</body>
+</html>
